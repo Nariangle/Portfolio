@@ -240,8 +240,7 @@ color: transparent;
 }
 
 #hero:before {
-  content: "fixed";
-  
+  content: "";
   position: absolute;
   bottom: 0;
   top: 0;
