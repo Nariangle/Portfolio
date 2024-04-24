@@ -1,3 +1,9 @@
+<?php 
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +31,7 @@
         <li><a href="skill/edt.php" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Skills</span></a></li>
         <li><a href="work/edt.php" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Work</span></a></li>
         <li><a href="portfolio/gallery.php" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+        <a href="logout.php">Logout</a>
       </ul>
 </nav>
 </Div><!-- .nav-menu -->
@@ -85,6 +92,13 @@
                         <tr>
                             <td style="font-weight: bolder; padding: 5px;">Address:</td>
                             <td><?php echo $row['address'] ?></td>
+                        </tr>
+                        <tr>
+                        <div>
+                                    <img style=" height:200px; width:auto; max-width:500px;" class="img-fluid" src="../assets/img/<?php echo $row['img'] ?>" alt="..."/>
+                                    <img style=" height:200px; width:auto; max-width:500px;" class="img-fluid" src="../assets/img/<?php echo $row['aboutimage'] ?>" alt="..." />
+                                </div>
+                                
                         </tr>
                     </tbody>
                 </table>
@@ -207,3 +221,9 @@
 </body>
 
 </html>
+<?php 
+}else{
+     header("Location: admin.php");
+     exit();
+}
+ ?>

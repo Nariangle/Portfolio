@@ -2,6 +2,45 @@
 include '../../database.php';
 
 if (isset($_POST['submit'])) {
+    // Handle "image" file upload
+    $targetDirectory = "../../assets/img/"; // Directory where you want to store uploaded images
+    $targetFile = $targetDirectory . basename($_FILES["image"]["name"]);
+    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    // Check if "image" file is a actual image or fake image
+    $check = getimagesize($_FILES["image"]["tmp_name"]);
+    if($check !== false) {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
+            // File uploaded successfully, now update database with "image" file name
+            $imgFileName = basename($_FILES["image"]["name"]);
+        } else {
+            echo "Sorry, there was an error uploading your 'image' file.";
+            exit();
+        }
+    } else {
+        echo "File is not an image.";
+        exit();
+    }
+
+    // Handle "aboutimage" file upload
+    $targetAboutDirectory = "../../assets/img/"; // Directory where you want to store uploaded about images
+    $targetAboutFile = $targetAboutDirectory . basename($_FILES["aboutimage"]["name"]);
+    $aboutImageFileType = strtolower(pathinfo($targetAboutFile, PATHINFO_EXTENSION));
+    // Check if "aboutimage" file is a actual image or fake image
+    $aboutCheck = getimagesize($_FILES["aboutimage"]["tmp_name"]);
+    if($aboutCheck !== false) {
+        if (move_uploaded_file($_FILES["aboutimage"]["tmp_name"], $targetAboutFile)) {
+            // File uploaded successfully, now update database with "aboutimage" file name
+            $aboutImgFileName = basename($_FILES["aboutimage"]["name"]);
+        } else {
+            echo "Sorry, there was an error uploading your 'aboutimage' file.";
+            exit();
+        }
+    } else {
+        echo "File is not an image.";
+        exit();
+    }
+
+    // Update other fields
     $abtme = $_POST['abtme'];
     $adr = $_POST['addr'];
     $bdy = $_POST['bday'];
@@ -12,18 +51,22 @@ if (isset($_POST['submit'])) {
     $lname = $_POST['lname'];
     $ocp = $_POST['ocp'];
     $web = $_POST['web'];
-    
-    
-    $sql = "UPDATE `userinfo` SET `me`='$abtme',`address`='$adr',`birthday`='$bdy',`contact`='$cnt',`email`='$eml',`experience`='$exp',`firstName`='$fname',`lastName`='$lname',`occupancy`='$ocp',`socials`='$web'  WHERE id=1";
+
+    // Update the database with both "image" and "aboutimage" file names
+    $sql = "UPDATE `userinfo` SET `me`='$abtme',`address`='$adr',`birthday`='$bdy',`contact`='$cnt',`email`='$eml',`experience`='$exp',`firstName`='$fname',`lastName`='$lname',`occupancy`='$ocp',`socials`='$web',`img`='$imgFileName', `aboutimage`='$aboutImgFileName' WHERE id=1";
     
     $result = mysqli_query($connect, $sql);
     if ($result) {
         header("Location: ../index.php?msg=data updated");
+        exit(); // After header redirect, ensure that code doesn't continue executing
     } else {
         echo "Failed: " . mysqli_error($connect);
     }
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +110,7 @@ if (isset($_POST['submit'])) {
 
         <div>
             <h3>Admin Detail</h3>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">>
                 <table>
                     <tr class="formtable">
                         <td><label for="">First Name:</label></td>
@@ -110,6 +153,16 @@ if (isset($_POST['submit'])) {
                         <td><label for="">Address:</label></td>
                         <td> <input class="form" type="text" name="addr" value="<?php echo $row['address'] ?>"></td>
                     </tr>
+                    <tr>
+                    <tr>
+    <td><label for="image">Image:</label></td>
+    <td><input type="file" name="image" id="image"></td>
+</tr>
+<tr>
+    <td><label for="aboutimage">About Image:</label></td>
+    <td><input type="file" name="aboutimage" id="aboutimage"></td>
+</tr>
+
                 </table>
                 <br>
                 <div>

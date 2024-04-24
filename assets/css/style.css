@@ -290,6 +290,12 @@ h6 {
   max-width: 100%;
   height: auto;
 }
+.oval-image {
+  border-radius: 50%;
+  width: 80%; /* Adjust the width and height as needed */
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the oval shape */
+}
 
 #hero h1 {
 

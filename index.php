@@ -86,7 +86,7 @@
       <p>I'm an <span><a><?php echo $row['occupancy'] ?></a></span></p>
     </div>
     <div class="col-lg-4" data-aos="fade-right">
-      <img src="assets/img/mee.png" class="img-fluid" alt="">
+    <img src="assets/img/<?php echo $row['img']; ?>" class="oval-image" alt="">
     </div>
   </div>
 </section><!-- End Hero -->
@@ -103,7 +103,7 @@
 
         <div class="row">
           <div class="col-lg-4" data-aos="fade-right">
-            <img src="assets/img/aboutme.jpg" class="img-fluid" alt="">
+          <img src="assets/img/<?php echo $row['aboutimage']; ?>"class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
 

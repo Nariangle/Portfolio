@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2024 at 02:40 PM
+-- Generation Time: Apr 24, 2024 at 08:08 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,6 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`name`, `email`, `subject`, `message`, `phone`, `id`) VALUES
-('Elijah Alfonso', 'elijahalfonso5149@gmail.com', 'Subject', 'Message ', '09999995140', 1),
 ('ANTHONY Aranas', 'ab.elizalde434@lms.wmsu.edu.ph', 'asdasd', 'asdasd', '09067546208', 7),
 ('ANTHONY Aranas', 'ab.elizalde434@lms.wmsu.edu.ph', 'asdasd', 'asdasdas', '09067546208', 8),
 ('ANTHONY Aranas', 'ab.elizalde434@lms.wmsu.edu.ph', 'asdasd', 'asdasda', '09067546208', 9),
@@ -134,15 +133,37 @@ CREATE TABLE `userinfo` (
   `lastName` varchar(100) DEFAULT NULL,
   `occupancy` varchar(200) DEFAULT NULL,
   `socials` varchar(200) DEFAULT NULL,
-  `id` int(10) UNSIGNED NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `img` varchar(200) DEFAULT NULL,
+  `aboutimage` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `userinfo`
 --
 
-INSERT INTO `userinfo` (`me`, `address`, `birthday`, `contact`, `email`, `experience`, `firstName`, `lastName`, `occupancy`, `socials`, `id`) VALUES
-('Hey there! I m Anthony Elizalde, and I m about to graduate with a degree in Information Technology from Western Mindanao State University. On top of that, I m also a member of the Jambangan Cultural Dance Troupe.', 'Elapso compound, Canelar Moret, Zamboanga City', 'June 13, 1999', '0906 754 6208', 'anthonyelizalde6@gmail.com', 'I have hands-on experience in UX/UI design, software engineering, and web development, having actively contributed to projects in each of these areas throughout my academic and professional journey. I also have hands-on experience in handling hardware.', 'Anthony', 'Elizalde', 'IT Specialist ', 'https://github.com/Nariangle.com', 1);
+INSERT INTO `userinfo` (`me`, `address`, `birthday`, `contact`, `email`, `experience`, `firstName`, `lastName`, `occupancy`, `socials`, `id`, `img`, `aboutimage`) VALUES
+('Hey there! I m Anthony Elizalde, and I m about to graduate with a degree in Information Technology from Western Mindanao State University. On top of that, I m also a member of the Jambangan Cultural Dance Troupe.', 'Elapso compound, Canelar Moret, Zamboanga City', 'June 13, 1999', '0906 754 6208', 'anthonyelizalde6@gmail.com', 'I have hands-on experience in UX/UI design, software engineering, and web development, having actively contributed to projects in each of these areas throughout my academic and professional journey. I also have hands-on experience in handling hardware.', 'Anthony', 'Elizalde', 'IT Specialist ', 'https://github.com/Nariangle.com', 1, 'metoo.png', 'mee.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `user_name`, `password`, `name`) VALUES
+(1, 'admin', '12345', 'Anthony');
 
 --
 -- Indexes for dumped tables
@@ -179,6 +200,12 @@ ALTER TABLE `userinfo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -211,6 +238,12 @@ ALTER TABLE `skills`
 --
 ALTER TABLE `userinfo`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
