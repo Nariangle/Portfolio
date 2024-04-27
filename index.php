@@ -43,7 +43,9 @@
   <header id="header">
       <nav class="navbar">
     <div class="navbar-brand">
-        <h1>AE</h1>
+     <a href="admin/admin.php" class="custom-link">
+  <h1>AE</h1>
+</a>
     </div>
     <div class="navbar-list">
         <ul>
@@ -85,6 +87,7 @@
       <br>
       <p>I'm an <span><a><?php echo $row['occupancy'] ?></a></span></p>
     </div>
+
     <div class="col-lg-4" data-aos="fade-right">
     <img src="assets/img/<?php echo $row['img']; ?>" class="oval-image" alt="">
     </div>
@@ -108,13 +111,13 @@
           <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
 
             </p>
-            <div style="padding-left: 30px; font-size: 30px; width: 100%; " class="row">
+            <div style="font-size: 3vw; width: 100%; " class="row">
               <div class="col-lg-6">
                 <ul style="width: 700px;">
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span><?php echo $row['birthday'] ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><?php echo $row['socials'] ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span><?php echo $row['contact'] ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><?php echo $row['email'] ?></span></li>
+                  <li><strong>Birthday:</strong> <span><?php echo $row['birthday'] ?></span></li>
+                  <li><strong>Website:</strong> <span><?php echo $row['socials'] ?></span></li>
+                  <li><strong>Phone:</strong> <span><?php echo $row['contact'] ?></span></li>
+                  <li><strong>Email:</strong> <span><?php echo $row['email'] ?></span></li>
                 </ul>
               </div>
             </div>
@@ -347,5 +350,8 @@
   <script src="assets/js/style.js"></script>
 
 </body>
+<footer>
+    <p> @Anthony Elizalde 2024| All rights reserved</p>
+</footer>
 
 </html>

@@ -205,7 +205,40 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                 } ?>
                 <br>
                 <div>
-                    
+                <section id="educ" class="segment">
+                <div class="subTitle">MESSAGES</div>
+                <table class="educTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        include '../database.php';
+
+                        $sql = "SELECT * FROM `contact` ORDER BY id DESC LIMIT 10";
+                        $result = mysqli_query($connect, $sql);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                            </tr>
+                            <td><?php echo $row['name'] ?></td>
+                            <td><?php echo $row['email'] ?></td>
+                            <td><?php echo $row['subject'] ?></td>
+                            <td><?php echo $row['message'] ?></td>
+                            <td><?php echo $row['phone'] ?></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+
+                    </tbody>
+
+                </table>
                 </div>
             </div><br>
             <br>
